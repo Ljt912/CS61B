@@ -8,7 +8,6 @@
  * Or you can see the full documentation at:
  *   http://introcs.cs.princeton.edu/java/15inout/javadoc/StdDraw.html
  */
-
 public class StdDrawDemo {
 	public static String imageToDraw = "advice.png";
 
