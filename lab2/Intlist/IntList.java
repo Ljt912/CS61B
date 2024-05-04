@@ -104,6 +104,7 @@ public class IntList {
             IntList itrB = B;
             IntList newList = new IntList(itrB.first, null);
             IntList itrNewList = newList;
+            itrB = B.rest;
             while (itrB != null){
                 IntList newNode = new IntList(itrB.first, null);
                 itrNewList.rest = newNode;
