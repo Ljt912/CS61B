@@ -7,19 +7,15 @@ public class ArrayDeque<T> {
         _size = 0;
     }
 
-    public void addFirst(T item) {
-        if (_size == _maxSize) {
-            addResize();
-        }
-        int itr = _size;
-        while (itr > 0) {
-            _items[itr] = _items[itr - 1];
-        }
-        _items[itr] = item;
-        _size = _size + 1;
-    }
+//    public ArrayDeque(ArrayDeque other) {
+//        _items = (T[]) new Object[other._maxSize];
+//        _size = other._size;
+//        for (int i = 0; i < other._size; i++) {
+//            _items[i] = (T) other._items[i];
+//        }
+//    }
 
-    public void addResize() {
+    private void addResize() {
         if (_maxSize >= 16) {
             _maxSize *= 2;
             T[] newItems = (T[]) new Object[_maxSize];
@@ -32,6 +28,21 @@ public class ArrayDeque<T> {
             _items = newItems;
         }
     }
+
+    public void addFirst(T item) {
+        if (_size == _maxSize) {
+            addResize();
+        }
+        int itr = _size;
+        while (itr > 0) {
+            _items[itr] = _items[itr - 1];
+            itr -= 1;
+        }
+        _items[itr] = item;
+        _size = _size + 1;
+    }
+
+
     public void addLast(T item) {
         if (_size == _maxSize) {
             addResize();
@@ -55,7 +66,7 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-    public void removeResize() {
+    private void removeResize() {
         if (_maxSize >= 16) {
             if (_size / _maxSize < 0.25) {
                 _maxSize /= 2;
@@ -79,7 +90,7 @@ public class ArrayDeque<T> {
             return null;
         } else {
             T temp = _items[0];
-            for (int i = _size; i > 0; i++) {
+            for (int i = _size; i > 0; i--) {
                 _items[i - 1] = _items[i];
             }
             removeResize();
@@ -103,14 +114,6 @@ public class ArrayDeque<T> {
             return null;
         } else {
             return _items[index];
-        }
-    }
-
-    public ArrayDeque(ArrayDeque other) {
-        _items = (T[]) new Object[other._maxSize];
-        _size = other._size;
-        for (int i = 0; i < other._size; i++) {
-            _items[i] = (T) other._items[i];
         }
     }
 }
