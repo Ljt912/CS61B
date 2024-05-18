@@ -1,4 +1,4 @@
-public class LinkedListDeque<itemType> {
+public class LinkedListDeque<T> {
     private Node _sentinel;
     private int _size;
 
@@ -23,50 +23,50 @@ public class LinkedListDeque<itemType> {
         }
     }
 
-    public itemType getRecursive(int index) {
+    public T getRecursive(int index) {
         if (index > size()) {
             return null;
         }
-            return _sentinel.getRecursive_helper(index + 1);
+        return _sentinel.getRecursiveHelper(index + 1);
     }
 
-    public void addFirst(itemType item) {
+    public void addFirst(T item) {
         _size += 1;
         Node newNode = new Node(_sentinel, item, _sentinel._nextNode);
         _sentinel._nextNode._preNode = newNode;
         _sentinel._nextNode = newNode;
     }
 
-    public void addLast(itemType item) {
+    public void addLast(T item) {
         _size += 1;
         Node newNode = new Node(_sentinel._preNode, item, _sentinel);
         _sentinel._preNode._nextNode = newNode;
         _sentinel._preNode = newNode;
     }
 
-    public itemType removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
         _size -= 1;
-        itemType itemRemoved = _sentinel._nextNode._item;
+        T itemRemoved = _sentinel._nextNode._item;
         _sentinel._nextNode._nextNode._preNode = _sentinel;
         _sentinel._nextNode = _sentinel._nextNode._nextNode;
         return itemRemoved;
     }
 
-    public itemType removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
         _size -= 1;
-        itemType itemRemoved = _sentinel._preNode._item;
+        T itemRemoved = _sentinel._preNode._item;
         _sentinel._preNode._preNode._nextNode = _sentinel;
         _sentinel._preNode = _sentinel._preNode._preNode;
         return itemRemoved;
     }
 
-    public itemType get(int index) {
+    public T get(int index) {
         if (index >= size() + 1) {
             return null;
         }
@@ -83,7 +83,7 @@ public class LinkedListDeque<itemType> {
     }
 
     public boolean isEmpty() {
-            return size() == 0;
+        return size() == 0;
     }
 
     public void printDeque() {
@@ -101,10 +101,10 @@ public class LinkedListDeque<itemType> {
         System.out.println();
     }
 
-    public class Node {
-        public Node _preNode;
-        public itemType _item;
-        public Node _nextNode;
+    private class Node {
+        private Node _preNode;
+        private T _item;
+        private Node _nextNode;
 
         private Node() {
             _preNode = null;
@@ -112,21 +112,21 @@ public class LinkedListDeque<itemType> {
             _nextNode = null;
         }
 
-        private itemType getRecursive_helper(int index) {
-            if (index == 0){
+        private T getRecursiveHelper(int index) {
+            if (index == 0) {
                 return _item;
             } else {
-                return  _nextNode.getRecursive_helper(index - 1);
+                return  _nextNode.getRecursiveHelper(index - 1);
             }
         }
 
-        private Node(Node preNode, itemType item, Node nextNode) {
+        private Node(Node preNode, T item, Node nextNode) {
             _preNode = preNode;
             _item = item;
             _nextNode = nextNode;
         }
 
-        private Node(itemType item) {
+        private Node(T item) {
             _preNode = null;
             _item = item;
             _nextNode = null;

@@ -1,13 +1,13 @@
-public class ArrayDeque<itemType> {
-    private itemType[] _items;
+public class ArrayDeque<T> {
+    private T[] _items;
     private  int _maxSize = 1;
     private int _size;
     public ArrayDeque() {
-        _items = (itemType[]) new Object[_maxSize];
+        _items = (T[]) new Object[_maxSize];
         _size = 0;
     }
 
-    public void addFirst(itemType item) {
+    public void addFirst(T item) {
         if (_size == _maxSize) {
             addResize();
         }
@@ -22,17 +22,17 @@ public class ArrayDeque<itemType> {
     public void addResize() {
         if (_maxSize >= 16) {
             _maxSize *= 2;
-            itemType[] newItems = (itemType[]) new Object[_maxSize];
+            T[] newItems = (T[]) new Object[_maxSize];
             System.arraycopy(_items, 0, newItems, 0, _size);
             _items = newItems;
         } else {
             _maxSize += 1;
-            itemType[] newItems = (itemType[]) new Object[_maxSize];
+            T[] newItems = (T[]) new Object[_maxSize];
             System.arraycopy(_items, 0, newItems, 0, _size);
             _items = newItems;
         }
     }
-    public void addLast(itemType item) {
+    public void addLast(T item) {
         if (_size == _maxSize) {
             addResize();
         }
@@ -40,11 +40,7 @@ public class ArrayDeque<itemType> {
     }
 
     public boolean isEmpty() {
-        if (_size == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return _size == 0;
     }
 
     public int size() {
@@ -52,7 +48,7 @@ public class ArrayDeque<itemType> {
     }
 
     public void printDeque() {
-        for (int i = 0; i < _size; i ++) {
+        for (int i = 0; i < _size; i++) {
             System.out.print(_items[i]);
             System.out.print(' ');
         }
@@ -61,28 +57,28 @@ public class ArrayDeque<itemType> {
 
     public void removeResize() {
         if (_maxSize >= 16) {
-            if ( _size / _maxSize < 0.25) {
+            if (_size / _maxSize < 0.25) {
                 _maxSize /= 2;
-                itemType[] newItems = (itemType[]) new Object[_maxSize];
+                T[] newItems = (T[]) new Object[_maxSize];
                 System.arraycopy(_items, 0, newItems, 0, _size);
                 _items = newItems;
             }
         } else {
-            if ( _size != _maxSize) {
+            if (_size != _maxSize) {
                 if (_size > 1) {
                     _maxSize -= 1;
                 }
-                itemType[] newItems = (itemType[]) new Object[_maxSize];
+                T[] newItems = (T[]) new Object[_maxSize];
                 System.arraycopy(_items, 0, newItems, 0, _size);
                 _items = newItems;
             }
         }
     }
-    public itemType removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         } else {
-            itemType temp = _items[0];
+            T temp = _items[0];
             for (int i = _size; i > 0; i++) {
                 _items[i - 1] = _items[i];
             }
@@ -92,17 +88,17 @@ public class ArrayDeque<itemType> {
 
     }
 
-    public itemType removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         } else {
-            itemType temp = _items[--_size];
+            T temp = _items[--_size];
             removeResize();
             return temp;
         }
     }
 
-    public itemType get(int index) {
+    public T get(int index) {
         if (index >= _size) {
             return null;
         } else {
@@ -111,10 +107,10 @@ public class ArrayDeque<itemType> {
     }
 
     public ArrayDeque(ArrayDeque other) {
-        _items = (itemType[]) new Object[other._maxSize];
+        _items = (T[]) new Object[other._maxSize];
         _size = other._size;
-        for (int i = 0; i < other._size; i ++) {
-            _items[i] = (itemType) other._items[i];
+        for (int i = 0; i < other._size; i++) {
+            _items[i] = (T) other._items[i];
         }
     }
 }
