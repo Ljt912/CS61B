@@ -68,7 +68,7 @@ public class ArrayDeque<T> {
 
     private void removeResize() {
         if (_maxSize >= 16) {
-            if ((float)_size / _maxSize < 0.25) {
+            if ((float) _size / _maxSize < 0.25) {
                 _maxSize /= 2;
                 T[] newItems = (T[]) new Object[_maxSize];
                 System.arraycopy(_items, 0, newItems, 0, _size);
@@ -107,21 +107,5 @@ public class ArrayDeque<T> {
         } else {
             return _items[index];
         }
-    }
-
-    public static void main (String[] args) {
-        ArrayDeque<Integer> AD = new ArrayDeque<>();
-        AD.addLast(0);
-        AD.addLast(1);
-        AD.removeLast();
-        AD.removeFirst();
-        AD.addLast(4);
-        AD.removeLast();
-        AD.addLast(6);
-        AD.addLast(7);
-        AD.addLast(8);
-        AD.addLast(9);
-        AD.removeFirst();
-        AD.removeFirst();
     }
 }
