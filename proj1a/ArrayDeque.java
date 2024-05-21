@@ -90,9 +90,10 @@ public class ArrayDeque<T> {
             return null;
         } else {
             T temp = _items[0];
-            for (int i = _size; i > 0; i--) {
+            for (int i = _size - 1; i > 0; i--) {
                 _items[i - 1] = _items[i];
             }
+            _size -= 1;
             removeResize();
             return temp;
         }
