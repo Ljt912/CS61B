@@ -68,14 +68,14 @@ public class ArrayDeque<T> {
 
     private void removeResize() {
         if (_maxSize >= 16) {
-            if (_size / _maxSize < 0.25) {
+            if ((float)_size / _maxSize < 0.25) {
                 _maxSize /= 2;
                 T[] newItems = (T[]) new Object[_maxSize];
                 System.arraycopy(_items, 0, newItems, 0, _size);
                 _items = newItems;
             }
         } else {
-            if (_size != _maxSize) {
+            if (_size < _maxSize) {
                 if (_size > 1) {
                     _maxSize -= 1;
                 }
