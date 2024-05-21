@@ -76,7 +76,7 @@ public class ArrayDeque<T> {
             }
         } else {
             if (_size < _maxSize) {
-                if (_size > 1) {
+                if (_maxSize > 1) {
                     _maxSize -= 1;
                 }
                 T[] newItems = (T[]) new Object[_maxSize];
@@ -90,14 +90,13 @@ public class ArrayDeque<T> {
             return null;
         } else {
             T temp = _items[0];
-            for (int i = _size - 1; i > 0; i--) {
+            for (int i = 1; i < _size; i++) {
                 _items[i - 1] = _items[i];
             }
             _size -= 1;
             removeResize();
             return temp;
         }
-
     }
 
     public T removeLast() {
@@ -116,5 +115,21 @@ public class ArrayDeque<T> {
         } else {
             return _items[index];
         }
+    }
+
+    public static void main (String[] args) {
+        ArrayDeque<Integer> AD = new ArrayDeque<>();
+        AD.addLast(0);
+        AD.addLast(1);
+        AD.removeLast();
+        AD.removeFirst();
+        AD.addLast(4);
+        AD.removeLast();
+        AD.addLast(6);
+        AD.addLast(7);
+        AD.addLast(8);
+        AD.addLast(9);
+        AD.removeFirst();
+        AD.removeFirst();
     }
 }

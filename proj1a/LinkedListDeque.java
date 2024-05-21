@@ -132,13 +132,4 @@ public class LinkedListDeque<T> {
             _nextNode = null;
         }
     }
-    public static void main(String[] args) {
-        LinkedListDeque test = new LinkedListDeque();
-        test.addLast(2);
-        test.removeFirst();
-        test.addFirst(4);
-        test.addLast(5);
-        test.removeFirst();
-        System.out.print(test.get(0));
-    }
 }
