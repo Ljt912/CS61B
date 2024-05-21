@@ -74,17 +74,9 @@ public class ArrayDeque<T> {
                 System.arraycopy(_items, 0, newItems, 0, _size);
                 _items = newItems;
             }
-        } else {
-            if (_size < _maxSize) {
-                if (_maxSize > 1) {
-                    _maxSize -= 1;
-                }
-                T[] newItems = (T[]) new Object[_maxSize];
-                System.arraycopy(_items, 0, newItems, 0, _size);
-                _items = newItems;
-            }
         }
     }
+
     public T removeFirst() {
         if (isEmpty()) {
             return null;
