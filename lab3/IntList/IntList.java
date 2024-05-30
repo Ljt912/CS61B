@@ -79,27 +79,18 @@ public class IntList {
      * as an input, returns null.
      */
     public static IntList reverse(IntList A) {
-        if (A == null) {
-            return null;
-        } else {
-            return reverseHelper(A, null);
+        IntList newList = null;
+        while (A != null) {
+            newList = new IntList(A.first, newList);
+            A = A.rest;
         }
+        return newList;
     }
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
-
-    private static IntList reverseHelper(IntList A, IntList rest0) {
-        if (A.rest == null) {
-            return new IntList(A.first, rest0);
-        } else {
-            IntList rest = new IntList(A.first, rest0);
-            return reverseHelper(A.rest, rest);
-        }
-    }
-
     public static IntList dcatenate(IntList A, IntList B) {
         if (A == null) {
             return B;
