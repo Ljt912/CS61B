@@ -29,11 +29,12 @@ public class IntListTest {
 
     @Test
     public void testreverse() {
-        IntList L = IntList.of(1, 2, 3, 4);
-        assertEquals(IntList.of(4, 3, 2, 1), IntList.reverse(L));
-        assertNotEquals(L, IntList.reverse(L));
-        L = IntList.of();
-        assertEquals(IntList.of(), IntList.reverse(L));
+        IntList A = IntList.of(1, 2, 3, 4);
+        IntList B = IntList.reverse(A);
+        assertEquals(IntList.of(4, 3, 2, 1), B);
+        assertNotEquals(IntList.of(1, 2, 3, 4), A);
+        IntList C = IntList.reverse(null);
+        assertEquals(null, C);
     }
     /**
      * Do not use the new keyword in your tests. You can create

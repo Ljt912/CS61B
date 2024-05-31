@@ -79,12 +79,13 @@ public class IntList {
      * as an input, returns null.
      */
     public static IntList reverse(IntList A) {
-        IntList newList = null;
-        while (A != null) {
-            newList = new IntList(A.first, newList);
-            A = A.rest;
+        if (A == null || A.rest == null) {
+            return A;
         }
-        return newList;
+        IntList reversedList = reverse(A.rest);
+        A.rest.rest = A;
+        A.rest = null;
+        return reversedList;
     }
 
     /**
